@@ -32,3 +32,15 @@ public:
              << " | Stock: " << stock << endl;
     }
 };
+// Clase ProductoFisico hereda de Producto
+class ProductoFisico : public Producto {
+public:
+    ProductoFisico(string nombre, float precio, string codigo, int stock)
+        : Producto(nombre, precio, codigo, stock) {}
+};
+// Clase ProductoDigital hereda de Producto
+class ProductoDigital : public Producto {
+public:
+    ProductoDigital(string nombre, float precio, string codigo)
+        : Producto(nombre, precio, codigo, 9999) {}
+};
