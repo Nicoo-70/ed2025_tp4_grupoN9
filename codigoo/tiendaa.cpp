@@ -140,3 +140,33 @@ public:
         }
         cout << "Total a pagar: $" << total << endl;
 };
+
+int main() {
+    // Crear productos
+    ProductoFisico p1("Mouse", 3500, "P001", 5);
+    ProductoFisico p2("Teclado", 6000, "P002", 3);
+    ProductoDigital p3("Curso Online", 10000, "D001");
+
+    // Crear cliente
+    Cliente cliente1("Camila", 101);
+
+    // Crear carrito y agregar productos
+    Carrito carrito;
+    carrito.agregarProducto(&p1);
+    carrito.agregarProducto(&p2);
+    carrito.agregarProducto(&p3);
+
+    // Mostrar carrito y total
+    carrito.mostrarCarrito();
+    cout << "Total del carrito: $" << carrito.calcularTotal() << endl;
+
+    // Confirmar pedido y mostrar factura
+    Pedido pedido(carrito.getProductos());
+    pedido.mostrarFactura();
+
+    // Agregar historial de compras al cliente
+    cliente1.agregarCompra("Pedido por $" + to_string(pedido.getTotal()));
+    cliente1.mostrarHistorial();
+
+    return 0;
+}
