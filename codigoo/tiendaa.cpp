@@ -44,3 +44,31 @@ public:
     ProductoDigital(string nombre, float precio, string codigo)
         : Producto(nombre, precio, codigo, 9999) {}
 };
+//clase cliente 
+class Cliente {
+private:
+    string nombre;     
+    int id;                
+    vector<string> historial;
+
+public:
+
+    Cliente(string nombre, int id) {
+        this->nombre = nombre;
+        this->id = id;
+    }
+
+    // Método para agregar un detalle de compra al historial
+    void agregarCompra(string detalle) {
+        historial.push_back(detalle);
+    }
+
+    // Mostrar historial de compras del cliente
+    void mostrarHistorial() {
+        cout << "Historial de compras de " << nombre << ":" << endl;
+        for (string compra : historial) {
+            cout << "- " << compra << endl;
+        }
+    }
+};
+
