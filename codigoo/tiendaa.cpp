@@ -38,12 +38,15 @@ public:
     ProductoFisico(string nombre, float precio, string codigo, int stock)
         : Producto(nombre, precio, codigo, stock) {}
 };
+
+
 // Clase ProductoDigital hereda de Producto
 class ProductoDigital : public Producto {
 public:
     ProductoDigital(string nombre, float precio, string codigo)
         : Producto(nombre, precio, codigo, 9999) {}
 };
+
 //clase cliente 
 class Cliente {
 private:
@@ -72,3 +75,38 @@ public:
     }
 };
 
+// Clase que representa el carrito de compras
+class Carrito {
+    private:
+        vector<Producto*> productos; // Lista de punteros a productos agregados
+    
+    public:
+        // Agrega un producto al carrito si hay stock disponible
+        void agregarProducto(Producto* p) {
+            if (p->getStock() > 0) {
+                productos.push_back(p);
+                p->setStock(p->getStock() - 1);
+                cout << "Producto agregado al carrito: " << p->getNombre() << endl;
+            } else {
+                cout << "No hay stock disponible para " << p->getNombre() << endl;
+            }
+        }
+    
+        // Contenido del carrito
+        void mostrarCarrito() {
+            cout << "\n Carrito:\n";
+            for (Producto* p : productos) {
+                p->mostrarProducto();
+            }
+        }
+        float calcularTotal() {
+            float total = 0;
+            for (Producto* p : productos) {
+                total += p->getPrecio();
+            }
+            return total;
+        }
+        vector<Producto*> getProductos() {
+            return productos;
+        }
+    };
