@@ -1,4 +1,4 @@
-#include <iostream>
+XXXXXXXX#include <iostream>
 #include <string>
 using namespace std;
 
@@ -110,3 +110,33 @@ class Carrito {
             return productos;
         }
     };
+
+    // Clase que representa un pedido 
+class Pedido {
+private:
+    vector<Producto*> productosComprados;
+    float total;
+
+public:
+    // Constructor que recibe los productos y calcula el total
+    Pedido(vector<Producto*> productos) {
+        this->productosComprados = productos;
+        total = 0;
+        for (Producto* p : productos) {
+            total += p->getPrecio();
+        }
+    }
+
+    // Devuelve el total del pedido
+    float getTotal() {
+        return total;
+    }
+
+    // Muestra la factura detallada del pedido
+    void mostrarFactura() {
+        cout << "\n🧾 FACTURA:\n";
+        for (Producto* p : productosComprados) {
+            cout << "- " << p->getNombre() << " $" << p->getPrecio() << endl;
+        }
+        cout << "Total a pagar: $" << total << endl;
+};
